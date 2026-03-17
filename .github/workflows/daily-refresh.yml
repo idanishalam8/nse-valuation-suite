@@ -11,5 +11,7 @@ jobs:
     steps:
       - name: Ping app to refresh data
         run: |
-          curl -s https://YOUR-NEW-APP-URL.streamlit.app/ || true
+          curl -s https://nse-valuation-suite-danishalam.streamlit.app/ || true
           echo "App pinged at $(date)"
+
+
