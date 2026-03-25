@@ -414,7 +414,7 @@ with tab_cca:
                         if fv < -15: return "color:#00cc44;font-weight:600"
                         return "color:#888888"
                     except: return ""
-                st.dataframe(pd_tbl[available].style.applymap(cpd, subset=["Premium / Disc %"]),
+                st.dataframe(pd_tbl[available].style.applymap(cpd),
                              hide_index=True, use_container_width=True)
 
             st.markdown("")
