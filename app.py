@@ -166,7 +166,7 @@ if len(richness) > 0:
                   .replace("Financial Services","FIN SVCS").replace("Consumer Durables","CONS DUR")
                   .replace("Pharmaceuticals","PHARMA"))
         c = "#00cc44" if sc < 35 else ("#ff3333" if sc > 65 else "#ffaa00")
-        items.append(f'<span style="color:{c};margin:0 14px">{short}: {sc:.0f}</span>')
+        items.append(f'<span style="color:{c};margin:0 14px">{short}: {int(sc) if sc is not None and sc == sc else 0}</span>')
     st.markdown(f"""
     <div class='bb-ticker'>
       &nbsp;&nbsp;◆&nbsp;&nbsp;{'  ◆  '.join(items)}&nbsp;&nbsp;◆&nbsp;&nbsp;
@@ -243,7 +243,7 @@ with tab_rank:
         sc = richness[sector]; zl,_ = interpret_score(sc)
         mults = sec_df.loc[sector] if sector in sec_df.index else pd.Series()
         rows.append({
-            "SECTOR": sector.upper(), "SCORE": f"{sc:.0f}/100", "ZONE": zl.upper(),
+            "SECTOR": sector.upper(), "SCORE": f"{int(sc) if sc is not None and sc == sc else 0}/100", "ZONE": zl.upper(),
             "P/E":   f"{mults.get('pe',float('nan')):.1f}x" if not pd.isna(mults.get("pe",float("nan"))) else "N/A",
             "P/BV":  f"{mults.get('pb',float('nan')):.2f}x" if not pd.isna(mults.get("pb",float("nan"))) else "N/A",
             "EV/EBITDA": f"{mults.get('ev_ebitda',float('nan')):.1f}x" if not pd.isna(mults.get("ev_ebitda",float("nan"))) else "N/A",
@@ -275,7 +275,7 @@ with tab_drill:
           <span style='font-size:14px;font-weight:600;color:#fff;letter-spacing:.08em'>{sel_sector.upper()}</span>
           <span>
             <span style='font-size:10px;color:{zc};font-weight:600;letter-spacing:.1em'>◆ {zl.upper()}</span>
-            <span style='font-size:20px;font-weight:600;color:{zc};margin-left:12px'>{sc:.0f}</span>
+            <span style='font-size:20px;font-weight:600;color:{zc};margin-left:12px'>{int(sc) if sc is not None and sc == sc else 0}</span>
             <span style='font-size:10px;color:#444'>/100</span>
           </span>
         </div>""", unsafe_allow_html=True)
